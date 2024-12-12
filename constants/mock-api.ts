@@ -16,6 +16,10 @@ export type User = {
   id: number;
   first_name: string;
   last_name: string;
+  username : string;
+  achievement: string;
+  status: string;
+  badge: string;
   email: string;
   phone: string;
   street: string;
@@ -81,6 +85,10 @@ export const fakeUsers = {
         first_name: faker.person.firstName(),
         last_name: faker.person.lastName(),
         email: `${faker.internet.email()}`,
+        username: faker.internet.userName(),
+        achievement: faker.helpers.arrayElement(['leaner', 'senior', 'junior']),
+        status: faker.helpers.arrayElement(['active', 'block']),
+        badge: faker.helpers.arrayElement(['gold', 'silver', 'bronze']),
         phone: `001-${Math.floor(Math.random() * 900) + 100}-${
           Math.floor(Math.random() * 900) + 100
         }-${Math.floor(Math.random() * 10000)}`,
@@ -104,7 +112,7 @@ export const fakeUsers = {
     }
 
     // Generate remaining records
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 830; i++) {
       sampleUsers.push(generateRandomUserData(i));
     }
 
@@ -113,17 +121,17 @@ export const fakeUsers = {
 
   // Get all users with optional gender filtering and search
   async getAll({
-    genders = [],
+    badges = [],
     search
   }: {
-    genders?: string[];
+    badges?: string[];
     search?: string;
   }) {
     let users = [...this.records];
 
-    // Filter users based on selected genders
-    if (genders.length > 0) {
-      users = users.filter((user) => genders.includes(user.gender));
+    // Filter users based on selected badges
+    if (badges.length > 0) {
+      users = users.filter((user) => badges.includes(user.badge));
     }
 
     // Search functionality across multiple fields
@@ -137,7 +145,8 @@ export const fakeUsers = {
           'city',
           'street',
           'state',
-          'country'
+          'country',
+          'badge',
         ]
       });
     }
@@ -149,16 +158,16 @@ export const fakeUsers = {
   async getUsers({
     page = 1,
     limit = 10,
-    genders,
+    badges,
     search
   }: {
     page?: number;
     limit?: number;
-    genders?: string;
+    badges?: string;
     search?: string;
   }) {
-    const gendersArray = genders ? genders.split('.') : [];
-    const allUsers = await this.getAll({ genders: gendersArray, search });
+    const badgeArray = badges ? badges.split('.') : [];
+    const allUsers = await this.getAll({ badges: badgeArray, search });
     const totalUsers = allUsers.length;
 
     // Pagination logic

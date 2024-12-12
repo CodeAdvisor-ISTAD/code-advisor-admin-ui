@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Building, FileType, User, NotebookPen } from 'lucide-react';
 import React from 'react';
-import { fakeForum, fakeArticle } from '@/constants/mock-api';
+import { fakeForum, fakeArticle, fakeUsers } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 
 export default async function TotalBarComponent({
@@ -34,6 +34,9 @@ export default async function TotalBarComponent({
 
   const articleData = await fakeArticle.getArticles(filters);
   const totalArticles = articleData.total_articles;
+
+  const usersData = await fakeUsers.getUsers(filters);
+  const totalUsers = usersData.total_users;
 
   
   return (
@@ -70,7 +73,7 @@ export default async function TotalBarComponent({
           <User className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">12234</div>
+          <div className="text-2xl font-bold">{totalUsers}</div>
           <p className="text-xs text-muted-foreground">+19% from last month</p>
         </CardContent>
       </Card>

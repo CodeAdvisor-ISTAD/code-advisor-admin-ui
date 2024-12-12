@@ -1,17 +1,13 @@
 import PageContainer from '@/components/layout/page-container';
-import { buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
 import { searchParamsCache, serialize } from '@/lib/searchparams';
-import { cn } from '@/lib/utils';
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
 import { SearchParams } from 'nuqs/parsers';
 import { Suspense } from 'react';
-import ProductListingPage from '@/app/dashboard/product/_components/product-listing';
-import ProductTableAction from '@/app/dashboard/product/_components/product-tables/product-table-action';
+import UsersTableAction from './_components/user-tables/user-table-action'
 import TotalBarComponent from '../overview/_components/total-bar';
+import UserListingPage from './_components/user-listing';
 
 export const metadata = {
   title: 'Dashboard: Products'
@@ -36,12 +32,12 @@ export default async function Page({ searchParams }: pageProps) {
           <Heading title="Users" description="Manage users" />
         </div>
         <Separator />
-        <ProductTableAction />
+        <UsersTableAction />
         <Suspense
           key={key}
           fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}
         >
-          <ProductListingPage />
+          <UserListingPage />
         </Suspense>
       </div>
     </PageContainer>
