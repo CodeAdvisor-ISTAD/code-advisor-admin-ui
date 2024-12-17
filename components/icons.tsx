@@ -32,7 +32,8 @@ import {
   UserCircle2Icon,
   UserPen,
   UserX2Icon,
-  X
+  X,
+  Camera,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
