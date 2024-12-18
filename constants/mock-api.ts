@@ -138,15 +138,10 @@ export const fakeUsers = {
     if (search) {
       users = matchSorter(users, search, {
         keys: [
-          'first_name',
-          'last_name',
+          'username',
           'email',
-          'job',
-          'city',
-          'street',
-          'state',
-          'country',
           'badge',
+          'phone'
         ]
       });
     }

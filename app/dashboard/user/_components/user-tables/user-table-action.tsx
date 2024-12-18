@@ -21,7 +21,7 @@ export default function UsersTableAction() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <DataTableSearch
-        searchKey="name"
+        searchKey="username, email, phone"
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         setPage={setPage}

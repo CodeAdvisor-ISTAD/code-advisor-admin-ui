@@ -22,6 +22,16 @@ import {
 } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import {
+  ArrowBigUp,
+  Bookmark,
+  Calendar,
+  CircleArrowDown,
+  CircleArrowUp,
+  MessageSquare,
+  Share2,
+  User
+} from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -42,6 +52,33 @@ const formSchema = z.object({
 });
 
 export default function ForumForm() {
+  const details = [
+    {
+      icon: <ArrowBigUp className="h-5 w-5 text-gray-500" />,
+      label: 'Total vote',
+      value: '400'
+    },
+    {
+      icon: <MessageSquare className="h-5 w-5 text-gray-500" />,
+      label: 'Total comment',
+      value: '30'
+    },
+    {
+      icon: <Bookmark className="h-5 w-5 text-gray-500" />,
+      label: 'Total bookmark',
+      value: '20'
+    },
+    {
+      icon: <User className="h-5 w-5 text-gray-500" />,
+      label: 'Creator',
+      value: 'Yith Sopheaktra'
+    },
+    {
+      icon: <Calendar className="h-5 w-5 text-gray-500" />,
+      label: 'Publish',
+      value: '18-11-2024'
+    }
+  ];
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,127 +95,70 @@ export default function ForumForm() {
   }
 
   return (
-    <Card className="mx-auto w-full">
-      <CardHeader>
-        <CardTitle className="text-left text-2xl font-bold">
-          Employee Information
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter your name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a country" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="usa">USA</SelectItem>
-                        <SelectItem value="uk">UK</SelectItem>
-                        <SelectItem value="canada">Canada</SelectItem>
-                        <SelectItem value="australia">Australia</SelectItem>
-                        <SelectItem value="germany">Germany</SelectItem>
-                        <SelectItem value="france">France</SelectItem>
-                        <SelectItem value="japan">Japan</SelectItem>
-                        <SelectItem value="brazil">Brazil</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Enter your email"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="company"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Company</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter your company" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+    <div className="flex gap-4 rounded-[5px]  bg-white p-4">
+      {/* Content */}
+      <Card className='mx-auto w-full'>
+        <CardHeader>
+          <CardTitle className="text-3xl font-bold">Fourm Detail</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <h2 className="text-xl font-bold">How to patch KDE on FreeBSD?</h2>
+          <p className="text-gray-700">
+            Mi magna sed nec nisl mattis. Magna cursus tincidunt rhoncus
+            imperdiet fermentum pretium, pharetra nisl. Euismod.
+          </p>
+
+          {/* Code Block */}
+          <div className="rounded-md bg-gray-100 p-4 font-mono text-sm">
+            <pre className="space-y-1">
+              <div>package main</div>
+              <div>&nbsp;</div>
+              <div>import &quot;fmt&quot;</div>
+              <div>&nbsp;</div>
+              <div>func main() {'{'}</div>
+              <div> fmt.Println(&quot;Hello, world!&quot;)</div>
+              <div>{'}'}</div>
+            </pre>
+          </div>
+
+          <p className="text-gray-700">
+            Posuere arcu arcu consectetur turpis rhoncus tellus. Massa,
+            consectetur massa sit fames nulla eu vehicula ullamcorper. Ante sit
+            mauris elementum sollicitudin arcu sit suspendisse pretium. Nisl
+            egestas fringilla justo bibendum.
+          </p>
+
+          {/* Tags */}
+          <div className="flex gap-2">
+            {['java', 'javascript', 'spring'].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-[5px] border border-secondary px-3 py-1 text-sm text-primary"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+      <Card className="mx-auto w-[600px]">
+        <CardHeader>
+          <CardTitle className="text-3xl font-bold">Fourm Detail</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {details.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-3 rounded-lg bg-gray-50 p-3"
+            >
+              {item.icon}
+              <span className="text-xl">
+                {item.label} : {item.value}
+              </span>
             </div>
-            <FormField
-              control={form.control}
-              name="gender"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Gender</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex space-x-4"
-                    >
-                      <FormItem className="flex items-center space-x-2">
-                        <FormControl>
-                          <RadioGroupItem value="male" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Male</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-2">
-                        <FormControl>
-                          <RadioGroupItem value="female" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Female</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-2">
-                        <FormControl>
-                          <RadioGroupItem value="other" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Other</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+          ))}
+        </CardContent>
+      </Card>
+    </div>
   );
 }

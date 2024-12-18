@@ -1,7 +1,7 @@
 import { CalendarDateRangePicker } from '@/components/date-range-picker';
 import PageContainer from '@/components/layout/page-container';
 import { Separator } from '@/components/ui/separator';
-import { searchParamsCache, serialize } from '@/lib/searchparams';
+import { searchParamsCache } from '@/lib/searchparams';
 import { SearchParams } from 'nuqs/parsers';
 import Navigate from './_components/navigate';
 import MainContent from './_components/main-content';
@@ -28,7 +28,7 @@ export default async function Page({ searchParams }: pageProps) {
           </div>
         </div>
         <Separator />
-        <div className="flex flex-col rounded-lg bg-white shadow-sm md:flex-row">
+        <div className="flex flex-col rounded-lg shadow-sm md:flex-row">
           <Navigate />
           <MainContent />
         </div>
