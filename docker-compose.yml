@@ -1,0 +1,13 @@
+services:
+  code-advisors-admin:
+    image: code-advisors-admin:latest
+    container_name: code-advisors-admin
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - GENERATE_SOURCEMAP=false
