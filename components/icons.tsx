@@ -33,12 +33,13 @@ import {
   UserPen,
   UserX2Icon,
   X,
-  Camera,
+  MessageSquareWarningIcon
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  report : MessageSquareWarningIcon,
   forum : Building,
   article : Newspaper,
   dashboard: LayoutDashboardIcon,

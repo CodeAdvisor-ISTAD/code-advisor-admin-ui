@@ -106,6 +106,14 @@ export const navItems: NavItem[] = [
     isActive: false,
     items: [] // No child items
   },
+  {
+    title: 'Report',
+    url: '/dashboard/report',
+    icon: 'report',
+    shortcut: ['r', 'r'],
+    isActive: false,
+    items: [] // No child items
+  },
   // {
   //   title: 'Product',
   //   url: '/dashboard/product',
@@ -127,12 +135,6 @@ export const navItems: NavItem[] = [
         icon: 'userPen',
         shortcut: ['m', 'm']
       },
-      {
-        title: 'Login',
-        shortcut: ['l', 'l'],
-        url: '/',
-        icon: 'login'
-      }
     ]
   },
 ];
