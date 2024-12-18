@@ -152,7 +152,7 @@ export default function ForumForm() {
               className="flex items-center gap-3 rounded-lg bg-gray-50 p-3"
             >
               {item.icon}
-              <span className="text-xl">
+              <span className="text-gray-700">
                 {item.label} : {item.value}
               </span>
             </div>

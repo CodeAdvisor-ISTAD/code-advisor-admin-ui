@@ -49,13 +49,6 @@ export default async function ForumListingPage({}: TEmployeeListingPage) {
             title={`Forum Content (${forumData.total_forums})`}
             description="Manage forum content here"
           />
-
-          {/* <Link
-            href={'/dashboard/forum/new'}
-            className={cn(buttonVariants({ variant: 'default' }))}
-          >
-            <Plus className="mr-2 h-4 w-4" /> Add New
-          </Link> */}
         </div>
         <Separator />
         <ForumTable data={forum} totalData={totalForums} />
