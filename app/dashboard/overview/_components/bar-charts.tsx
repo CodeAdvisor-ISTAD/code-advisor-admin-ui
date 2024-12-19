@@ -37,7 +37,10 @@ export function BarChartComponent() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Overview of total forum and article by months</CardTitle>
+        <CardTitle>Overview of total article by months</CardTitle>
+        <CardDescription>
+          Showing total visitors for the last 6 months
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

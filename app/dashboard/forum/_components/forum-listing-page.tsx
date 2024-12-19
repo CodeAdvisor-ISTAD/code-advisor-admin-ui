@@ -36,9 +36,7 @@ export default async function ForumListingPage({}: TEmployeeListingPage) {
       <div className="space-y-4">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
-          <div className="hidden items-center space-x-2 md:flex">
-            <CalendarDateRangePicker />
-          </div>
+          
         </div>
         {/* tab bar component */}
         <TabBarComponent />

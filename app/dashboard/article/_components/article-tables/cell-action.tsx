@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { Employee, Forum } from '@/constants/data';
-import { Edit, Eye, MoreHorizontal, Trash } from 'lucide-react';
+import { Edit, Eye, Lock, MoreHorizontal, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -46,6 +46,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             onClick={() => router.push(`/dashboard/article/${data.id}`)}
           >
             <Eye className="mr-2 h-4 w-4" /> View
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => router.push(`/dashboard/article/${data.id}`)}
+          >
+            <Lock className="mr-2 h-4 w-4" /> Block
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

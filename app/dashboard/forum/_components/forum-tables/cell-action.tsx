@@ -12,6 +12,7 @@ import { Employee, Forum } from '@/constants/data';
 import { Edit, Eye, MoreHorizontal, Trash, View } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { fakeForum } from '@/constants/mock-api';
 
 interface CellActionProps {
   data: Forum;
@@ -23,6 +24,14 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
 
   const onConfirm = async () => {};
+
+  const onBlock = async (id: number) => {
+    console.log(id);
+    setLoading(true);
+    await fakeForum.blockForum(id);
+    setLoading(false);
+    setOpen(false);
+  };
 
   return (
     <>
@@ -46,6 +55,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             onClick={() => router.push(`/dashboard/forum/${data.id}`)}
           >
             <Eye className="mr-2 h-4 w-4" /> Views
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onBlock(data.id)}>
+            <Eye className="mr-2 h-4 w-4" /> Block
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

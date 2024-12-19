@@ -34,9 +34,6 @@ export default function OverViewPage({
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="analytics" disabled>
-              Report
-            </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
             {/* total bar component  */}
@@ -57,10 +54,10 @@ export default function OverViewPage({
                   <RecentSales />
                 </CardContent>
               </Card>
-              {/* <div className="col-span-4">
+              <div className="col-span-4">
                 <AreaGraph />
               </div>
-              <div className="col-span-4 md:col-span-3">
+              {/* <div className="col-span-4 md:col-span-3">
                 <PieGraph />
               </div> */}
             </div>

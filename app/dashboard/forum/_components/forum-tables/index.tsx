@@ -10,6 +10,7 @@ import {
   STATUS_OPTIONS,
   useForumTableFilters
 } from './use-forum-table-filters';
+import { CalendarDateRangePicker } from '@/components/date-range-picker';
 
 export default function ForumTable({
   data,
@@ -30,24 +31,29 @@ export default function ForumTable({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-4">
-        <DataTableSearch
-          searchKey="title"
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          setPage={setPage}
-        />
-        <DataTableFilterBox
-          filterKey="status"
-          title="STATUS"
-          options={STATUS_OPTIONS}
-          setFilterValue={setStatusFilter}
-          filterValue={statusFilter}
-        />
-        <DataTableResetFilter
-          isFilterActive={isAnyFilterActive}
-          onReset={resetFilters}
-        />
+      <div className="flex items-center justify-between space-y-2">
+        <div className="flex items-center gap-4">
+          <DataTableSearch
+            searchKey=""
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            setPage={setPage}
+          />
+          <DataTableFilterBox
+            filterKey="status"
+            title="STATUS"
+            options={STATUS_OPTIONS}
+            setFilterValue={setStatusFilter}
+            filterValue={statusFilter}
+          />
+          <DataTableResetFilter
+            isFilterActive={isAnyFilterActive}
+            onReset={resetFilters}
+          />
+        </div>
+        <div className="hidden items-center space-x-2 md:flex">
+          <CalendarDateRangePicker />
+        </div>
       </div>
       <DataTable columns={columns} data={data} totalItems={totalData} />
     </div>

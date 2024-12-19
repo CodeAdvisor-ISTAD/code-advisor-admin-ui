@@ -44,9 +44,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
+import Image from 'next/image';
 
 export const company = {
-  name: 'CodeAdivsors',
+  name: 'Admin Dashboard',
   logo: GalleryVerticalEnd,
   plan: 'Admin Dashboard'
 };
@@ -60,11 +61,10 @@ export default function AppSidebar() {
       <SidebarHeader>
         <div className="flex gap-2 py-2 text-sidebar-accent-foreground ">
           <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <company.logo className="size-4" />
+            <Image src="/logo.png" alt="CodeAdivsors" width={32} height={32} />
           </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
+          <div className="grid flex-1 items-center text-left text-sm leading-tight">
             <span className="truncate font-semibold">{company.name}</span>
-            <span className="truncate text-xs">{company.plan}</span>
           </div>
         </div>
       </SidebarHeader>
@@ -78,7 +78,6 @@ export default function AppSidebar() {
                 <Collapsible
                   key={item.title}
                   asChild
-                  defaultOpen={item.isActive}
                   className="group/collapsible"
                 >
                   <SidebarMenuItem>
@@ -86,6 +85,7 @@ export default function AppSidebar() {
                       <SidebarMenuButton
                         tooltip={item.title}
                         isActive={pathname === item.url}
+                        className='group-data-[state=open]/collapsible:bg-gray-200 group-data-[state=open]/collapsible:dark:text-black'
                       >
                         {item.icon && <Icon />}
                         <span>{item.title}</span>
@@ -100,8 +100,11 @@ export default function AppSidebar() {
                               asChild
                               isActive={pathname === subItem.url}
                             >
-                              <Link href={subItem.url}>
-                                <span>{subItem.title}</span>
+                              <Link
+                                href={subItem.url}
+                                className="hover:bg-gray-200 dark:text-white"
+                              >
+                                <span className='dark:text-black'>{subItem.title}</span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -117,9 +120,9 @@ export default function AppSidebar() {
                     tooltip={item.title}
                     isActive={pathname === item.url}
                   >
-                    <Link href={item.url}>
+                    <Link href={item.url} className="hover:bg-gray-200">
                       <Icon />
-                      <span>{item.title}</span>
+                      <span >{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

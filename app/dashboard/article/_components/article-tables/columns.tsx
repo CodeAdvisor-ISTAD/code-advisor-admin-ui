@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Employee, Forum } from '@/constants/data';
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
+import { Badge } from '@/components/ui/badge';
 
 export const columns: ColumnDef<Forum>[] = [
   {
@@ -34,13 +35,25 @@ export const columns: ColumnDef<Forum>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'STATUS'
+    header: 'STATUS',
+    cell: ({ row }) => {
+      return (
+        <>
+          {row.getValue('status') === 'active' ? (
+            <Badge className="bg-green-500">{row.getValue('status')}</Badge>
+          ) : (
+            <Badge variant="destructive">{row.getValue('status')}</Badge>
+          )}
+        </>
+      );
+    }
   },
   {
     accessorKey: 'username',
     header: 'CREATED_BY'
   },
   {
+    header: 'ACTIONS',
     id: 'actions',
     cell: ({ row }) => <CellAction data={row.original} />
   }

@@ -12,8 +12,8 @@ export function ContentSection({
   reactions
 }: any) {
   return (
-    <div className="">
-      <Card className="ml-[100px] rounded-[5px] shadow-none">
+    <div className="px-[250px]">
+      <Card className="rounded-[5px] shadow-none">
         <img
           src={cover}
           className="9-0 h-80 w-full rounded-t-[5px] object-cover"
@@ -31,20 +31,6 @@ export function ContentSection({
                   #{tag}
                 </Badge>
               ))}
-            </div>
-            <div className="flex gap-4">
-              <div className="flex gap-2">
-                <Heart className="text-2xl text-pink-700" />
-                <span>{reactions?.love}</span>
-              </div>
-              <div className="flex gap-2">
-                <FireExtinguisher className="text-2xl text-red-500" />
-                <span>{reactions?.fire}</span>
-              </div>
-              <div className="flex gap-2">
-                <ThumbsUp className="text-2xl text-blue-500" />
-                <span>{reactions?.like}</span>
-              </div>
             </div>
 
             <div className="pt-4">

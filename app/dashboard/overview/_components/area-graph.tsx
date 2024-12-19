@@ -18,21 +18,21 @@ import {
   ChartTooltipContent
 } from '@/components/ui/chart';
 const chartData = [
-  { month: 'January', desktop: 186, mobile: 80 },
-  { month: 'February', desktop: 305, mobile: 200 },
-  { month: 'March', desktop: 237, mobile: 120 },
-  { month: 'April', desktop: 73, mobile: 190 },
-  { month: 'May', desktop: 209, mobile: 130 },
-  { month: 'June', desktop: 214, mobile: 140 }
+  { month: 'January', question: 186, answer: 80 },
+  { month: 'February', question: 305, answer: 200 },
+  { month: 'March', question: 237, answer: 120 },
+  { month: 'April', question: 73, answer: 190 },
+  { month: 'May', question: 209, answer: 130 },
+  { month: 'June', question: 214, answer: 140 }
 ];
 
 const chartConfig = {
   desktop: {
-    label: 'Desktop',
+    label: 'question',
     color: 'hsl(var(--chart-1))'
   },
   mobile: {
-    label: 'Mobile',
+    label: 'answer',
     color: 'hsl(var(--chart-2))'
   }
 } satisfies ChartConfig;
@@ -41,7 +41,7 @@ export function AreaGraph() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Area Chart - Stacked</CardTitle>
+        <CardTitle>Questions and Answers by months</CardTitle>
         <CardDescription>
           Showing total visitors for the last 6 months
         </CardDescription>
@@ -72,7 +72,7 @@ export function AreaGraph() {
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="mobile"
+              dataKey="question"
               type="natural"
               fill="var(--color-mobile)"
               fillOpacity={0.4}
@@ -80,7 +80,7 @@ export function AreaGraph() {
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="answer"
               type="natural"
               fill="var(--color-desktop)"
               fillOpacity={0.4}
@@ -90,7 +90,7 @@ export function AreaGraph() {
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
@@ -101,7 +101,7 @@ export function AreaGraph() {
             </div>
           </div>
         </div>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }

@@ -4,19 +4,18 @@ import React from 'react';
 import { ContentSection } from './article-section';
 
 export default function ArticleDetail() {
-
-    const content = {
-        cover: "https://e0.pxfuel.com/wallpapers/656/861/desktop-wallpaper-misty-mountain-foggy-mountain-silhouette-mountain-silhouette-wall-art-background-geometric-mountain-thumbnail.jpg",
-        title: "Web Development Trends",
-        tags: ["web development", "trends"],
-        author: "John Doe",
-        reactions: {
-          likes: 10,
-          comments: 2,
-          shares: 5,
-        },
+  const content = {
+    cover:
+      'https://www.hdwallpapers.in/download/abstract_cover_background_4k_hd-2560x1440.jpg',
+    title: 'Web Development Trends',
+    tags: ['web development', 'trends'],
+    author: 'John Doe',
+    reactions: {
+      likes: 10,
+      comments: 2,
+      shares: 5
     }
-
+  };
 
   return (
     <>

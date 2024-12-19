@@ -454,7 +454,54 @@ export const fakeForum = {
       limit,
       forums: paginatedForums
     };
-  }
+  },
+
+  // deleteForum(id: number)
+  async deleteForum(id: number) {
+    // Find the forum by its ID
+    const forum = this.records.find((forum) => forum.id === id);
+
+    if (!forum) {
+      return {
+        success: false,
+        message: `Forum with ID ${id} not found`
+      };
+    }
+
+    // Mock current time
+    const currentTime = new Date().toISOString();
+
+    return {
+      success: true,
+      time: currentTime,
+      message: `Forum with ID ${id} deleted`,
+    }
+  }, 
+
+  // block forum and change status to block
+  async blockForum(id: number) {
+    // Find the forum by its ID
+    const forum = this.records.find((forum) => forum.id === id);
+
+    if (!forum) {
+      return {
+        success: false,
+        message: `Forum with ID ${id} not found`
+      };
+    }
+
+    forum.status = 'block';
+
+    // Mock current time
+    const currentTime = new Date().toISOString();
+
+    return {
+      success: true,
+      time: currentTime,
+      message: `Forum with ID ${id} blocked`,
+    }
+  },
+  
 }
 
 // Initialize sample forums

@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Product } from '@/constants/data';
 import { User } from '@/constants/mock-api';
-import { Edit, MoreHorizontal, Trash } from 'lucide-react';
+import { Edit, Lock, MoreHorizontal, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -44,9 +44,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
           <DropdownMenuItem
-            onClick={() => router.push(`/dashboard/product/${data.id}`)}
+            onClick={() => router.push(`/dashboard/users/${data.id}`)}
           >
-            <Edit className="mr-2 h-4 w-4" /> Update
+            <Lock className="mr-2 h-4 w-4" /> block
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className="mr-2 h-4 w-4" /> Delete
