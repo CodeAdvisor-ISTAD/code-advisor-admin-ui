@@ -3,6 +3,7 @@ import { User } from '@/constants/data';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import { CellAction } from './cell-action';
+import { Badge } from '@/components/ui/badge';
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -35,11 +36,46 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'STATUS'
+    header: 'STATUS',
+    cell: ({ row }) => {
+      return (
+        <>
+          {row.getValue('status') === 'active' ? (
+            <Badge className="bg-green-500">{row.getValue('status')}</Badge>
+          ) : (
+            <Badge variant="destructive">{row.getValue('status')}</Badge>
+          )}
+        </>
+      );
+    }
   },
   {
     accessorKey: 'achievement',
     header: 'ACHEIVEMENT'
+  },
+  {
+    accessorKey: 'badge',
+    header: 'BADGE'
+  },
+  {
+    accessorKey: 'badge',
+    header: 'BADGE'
+  },
+  {
+    accessorKey: 'badge',
+    header: 'BADGE'
+  },
+  {
+    accessorKey: 'badge',
+    header: 'BADGE'
+  },
+  {
+    accessorKey: 'badge',
+    header: 'BADGE'
+  },
+  {
+    accessorKey: 'badge',
+    header: 'BADGE'
   },
   {
     accessorKey: 'badge',

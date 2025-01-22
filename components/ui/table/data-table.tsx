@@ -30,6 +30,7 @@ import {
 } from '@tanstack/react-table';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { parseAsInteger, useQueryState } from 'nuqs';
+import React from 'react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -93,10 +94,10 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <ScrollArea className="grid h-[calc(80vh-220px)] rounded-md border md:h-[calc(90dvh-240px)]">
-        <Table className="relative">
+        <Table className="relative" >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} >
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
                     {header.isPlaceholder

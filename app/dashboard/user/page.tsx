@@ -10,7 +10,7 @@ import TotalBarComponent from '../overview/_components/total-bar';
 import UserListingPage from './_components/user-listing';
 
 export const metadata = {
-  title: 'Dashboard: Products'
+  title: 'Dashboard: Users'
 };
 
 type pageProps = {

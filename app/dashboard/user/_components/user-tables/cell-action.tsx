@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Product } from '@/constants/data';
 import { User } from '@/constants/mock-api';
-import { Edit, Lock, MoreHorizontal, Trash } from 'lucide-react';
+import { BadgeCheck, Edit, Lock, MoreHorizontal, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -48,8 +48,10 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           >
             <Lock className="mr-2 h-4 w-4" /> block
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
-            <Trash className="mr-2 h-4 w-4" /> Delete
+          <DropdownMenuItem
+            onClick={() => router.push(`/dashboard/users/${data.id}`)}
+          >
+            <BadgeCheck className="mr-2 h-4 w-4" /> Promote Badges
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

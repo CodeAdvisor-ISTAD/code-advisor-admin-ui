@@ -85,7 +85,7 @@ export default function AppSidebar() {
                       <SidebarMenuButton
                         tooltip={item.title}
                         isActive={pathname === item.url}
-                        className='group-data-[state=open]/collapsible:bg-gray-200 group-data-[state=open]/collapsible:dark:text-black'
+                        className="group-data-[state=open]/collapsible:bg-gray-300 group-data-[state=open]/collapsible:dark:text-black  "
                       >
                         {item.icon && <Icon />}
                         <span>{item.title}</span>
@@ -102,9 +102,11 @@ export default function AppSidebar() {
                             >
                               <Link
                                 href={subItem.url}
-                                className="hover:bg-gray-200 dark:text-white"
+                                className="dark:text-white hover:bg-gray-200"
                               >
-                                <span className='dark:text-black'>{subItem.title}</span>
+                                <span className="dark:text-black">
+                                  {subItem.title}
+                                </span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -120,9 +122,9 @@ export default function AppSidebar() {
                     tooltip={item.title}
                     isActive={pathname === item.url}
                   >
-                    <Link href={item.url} className="hover:bg-gray-200">
+                    <Link href={item.url} className='hover:bg-gray-300'>
                       <Icon />
-                      <span >{item.title}</span>
+                      <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
