@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import { auth } from '@/auth';
 import React from 'react';
 import { ContentSection } from './article-section';
 
