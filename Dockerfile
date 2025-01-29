@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:18-alpine AS builder
+FROM node:22.13.0-alpine3.20 AS builder
 
 RUN apk add --no-cache libc6-compat
 
@@ -13,13 +13,13 @@ COPY package.json package-lock.json ./
 COPY . .
 
 # if use Image
-RUN npm i sharp
+RUN npm i --force
 
 # Run the next build process and generate the artifacts
 RUN npm run build
 
 # Multi-stage build process
-FROM node:18-alpine
+FROM node:22.13.0-alpine3.20
 
 # update and install latest dependencies, add dumb-init package
 # add a non-root user
@@ -39,9 +39,9 @@ COPY --chown=nextuser:nextuser --from=builder /app/.next/static ./.next/static
 # Set non-root user
 USER nextuser
 
-EXPOSE 3000
+EXPOSE 3001
 
-ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production
+ENV HOST=0.0.0.0 PORT=3001
 
 # Start the application
 CMD ["dumb-init","node","server.js"]
