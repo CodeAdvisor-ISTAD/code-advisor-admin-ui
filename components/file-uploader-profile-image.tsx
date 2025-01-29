@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Camera } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const ImageUpload = ({ form, name }: any) => {
-  const [preview, setPreview] = useState<string | ArrayBuffer | null>('https://static.wikia.nocookie.net/bleach/images/c/c4/Ep46CaptainAizen.png/revision/latest/scale-to-width/360?cb=20200415062732&path-prefix=en');
+const ImageUpload = ({ form, name, profileImage }: any) => {
+  const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
@@ -30,7 +30,7 @@ const ImageUpload = ({ form, name }: any) => {
           onChange={handleImageChange}
         />
         <img
-          src={typeof preview === 'string' ? preview : '/api/placeholder/96/96'}
+          src={typeof preview === 'string' ? preview : profileImage}
           alt="Profile"
           className={cn(
             'h-full w-full rounded-full object-cover',

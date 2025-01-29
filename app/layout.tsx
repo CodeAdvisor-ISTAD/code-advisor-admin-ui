@@ -4,6 +4,13 @@ import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
 import './globals.css';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 export const metadata: Metadata = {
   title: 'CodeAdvisors : Dashboard',
@@ -21,6 +28,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html
       lang="en"

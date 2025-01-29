@@ -1,5 +1,6 @@
 import ImageUpload from '@/components/file-uploader-profile-image';
 import { Form, FormField, FormItem } from '@/components/ui/form';
+import { useUser } from '@/context/authUserContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -33,12 +34,14 @@ export default function ProfileSection() {
         'https://twitter.com/sopheaktra9'
     ]);
 
+    const {user} = useUser();
+
     const addNewUrl = () => {
         setUrls([...urls, '']);
     };
 
     const defaultValues = {
-        image: null
+        image: user?.profileImage
     };
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -67,7 +70,7 @@ export default function ProfileSection() {
                                 name="image"
                                 render={() => (
                                     <FormItem>
-                                        <ImageUpload form={form} name="image" />
+                                        <ImageUpload form={form} name="image" profileImage={user?.profileImage} />
                                     </FormItem>
                                 )}
                             />
@@ -79,7 +82,7 @@ export default function ProfileSection() {
                                 </label>
                                 <input
                                     type="text"
-                                    defaultValue="sopheaktra"
+                                    defaultValue={user?.username}
                                     className="w-full rounded-lg border p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                                 />
                                 <p className="mt-2 text-sm text-gray-500">
@@ -93,7 +96,7 @@ export default function ProfileSection() {
                                 <label className="mb-2 block text-sm font-medium">Email</label>
                                 <input
                                     type="email"
-                                    defaultValue="sopheaktra@gmail.com"
+                                    defaultValue={user?.email}
                                     className="w-full rounded-lg border p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                                 />
                                 <p className="mt-2 text-sm text-gray-500">

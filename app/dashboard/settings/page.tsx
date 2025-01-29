@@ -7,7 +7,7 @@ import Navigate from './_components/navigate';
 import MainContent from './_components/main-content';
 
 export const metadata = {
-  title: 'Dashboard: Products'
+  title: 'Dashboard: Settings'
 };
 
 type pageProps = {

@@ -1,10 +1,15 @@
+"use client";
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Building, FileType, User, NotebookPen, MessageCircleQuestion, ClipboardCheck, PersonStanding } from 'lucide-react';
 import React from 'react';
 import { fakeForum, fakeArticle, fakeUsers } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
+import { useQuery } from '@tanstack/react-query';
+import { getAllQuestions, getTotalAnswers } from '@/service-api/forum';
+import { countAllUsers } from '@/service-api/user';
+import { getTotalContent } from '@/service-api/content';
 
-export default async function TotalBarComponent({
+export default function TotalBarComponent({
   searchParams ={} // make the searchParams optional ?
 }: {
   searchParams?: { [key: string]: string | string[] | undefined } // make the searchParams optional ? 
@@ -15,6 +20,26 @@ export default async function TotalBarComponent({
   // const search = searchParamsCache.get('q');
   // const status = searchParamsCache.get('status');
   // const pageLimit = searchParamsCache.get('limit');
+
+  const {data : getAllQuestion} = useQuery({
+    queryKey: ['getAllQuestion'],
+    queryFn: getAllQuestions
+  })
+
+  const {data: totalAnswers} = useQuery({
+    queryKey: ['getAllAnswers'],
+    queryFn: getTotalAnswers
+  })
+
+  const {data : totalUsers} = useQuery({
+    queryKey: ['getAllUsers'],
+    queryFn: countAllUsers
+  })
+
+  const {data: totalContent} = useQuery({
+    queryKey: ['getAllUsers'],
+    queryFn: getTotalContent
+  })
 
   const page = typeof searchParams.page === 'string' ? parseInt(searchParams.page) : 1;
   const search = searchParams.q as string;
@@ -28,15 +53,15 @@ export default async function TotalBarComponent({
     ...(status && { status: status })
   };
 
-  // mock api user
-  const forumData = await fakeForum.getForums(filters);
-  const totalForums = forumData.total_forums;
+  // // mock api user
+  // const forumData = await fakeForum.getForums(filters);
+  // const totalForums = forumData.total_forums;
 
-  const articleData = await fakeArticle.getArticles(filters);
-  const totalArticles = articleData.total_articles;
+  // const articleData = await fakeArticle.getArticles(filters);
+  // const totalArticles = articleData.total_articles;
 
-  const usersData = await fakeUsers.getUsers(filters);
-  const totalUsers = usersData.total_users;
+  // const usersData = await fakeUsers.getUsers(filters);
+  // const totalUsers = usersData.total_users;
 
   
   return (
@@ -49,7 +74,7 @@ export default async function TotalBarComponent({
           <MessageCircleQuestion className="h-6 w-6 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalForums}</div>
+          <div className="text-2xl font-bold">{getAllQuestion?.page?.totalElements}</div>
           <p className="text-xs text-muted-foreground">
             +20.1% from last month
           </p>
@@ -63,7 +88,7 @@ export default async function TotalBarComponent({
           <ClipboardCheck className="h-6 w-6 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">231</div>
+          <div className="text-2xl font-bold">{totalAnswers?.total}</div>
           <p className="text-xs text-muted-foreground">
             +20.1% from last month
           </p>
@@ -75,7 +100,7 @@ export default async function TotalBarComponent({
           <FileType className="h-6 w-6 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalArticles}</div>
+          <div className="text-2xl font-bold">{totalContent}</div>
           <p className="text-xs text-muted-foreground">
             +180.1% from last month
           </p>
